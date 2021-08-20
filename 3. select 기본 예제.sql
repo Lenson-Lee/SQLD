@@ -145,3 +145,15 @@ SELECT
 FROM tb_emp
 WHERE emp_nm LIKE '이%' 
     AND sex_cd <> 1;    --AND sex_cd != 1도 되지만 보통 <> 자주 사용.
+    
+    
+--AND와 OR의 우선순위(OR이 우선순위 마지막이라 결과가 마음처럼 안나온다)
+SELECT
+    emp_no, emp_nm, addr, dept_cd
+FROM tb_emp
+WHERE emp_nm LIKE '이%'
+    AND dept_cd IN ('100004', '100006')
+    AND NOT(addr LIKE '%수원%' OR addr LIKE '%성남%')
+    
+
+
