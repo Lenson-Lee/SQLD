@@ -31,6 +31,13 @@ GROUP BY dept_cd
 ORDER BY dept_cd;
 
 
+-- 집계함수를 쓸 떄는 집계함수만 써야한다. 일반컬럼과 합쳐쓰면 오류난다.(GROUP BY로 그룹으로 묶여있다면 같이 사용 가능)
+SELECT
+    emp_nm  --전체를 조회한다.
+    --, COUNT(emp_no) AS ent     41번을 집계한 카운트 한 건이 집계된다 ->근데 다 41번 집계라 뭘 출력해야할지 오류가 난다.
+FROM tb_emp;
+
+
 --HAVING절: 그룹화된 결과에서 조건을 걸어 행 수를 제한
 --HAVING은 보통GROUP BY 앞/뒤에 쓴다.
 --HAVING은 그룹화 한 후에 / WHERE은 그룹화 하기 전에. 나중에 자세히.
@@ -138,3 +145,5 @@ SELECT
     , addr
 FROM tb_emp
 ORDER BY eno DESC; --컬럼명 enp_nm대신 별칭 eno사용 가능
+
+
