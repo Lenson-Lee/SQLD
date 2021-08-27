@@ -108,3 +108,30 @@ SELECT
 FROM tb_emp A
 FULL JOIN tb_dept B    
 ON A.dept_cd = B.dept_cd;
+
+
+--SELF JOIN
+--1. 자기 자신의 테이블을 조인하는 개념.
+--2. 자기 테이블의 컬럼들을 매칭하여 조회하는 기법.
+
+--다이렉트매니저넘버와 사원 넘버가 동일하면 '상사정보'로 가져오기
+--테이블을 보면 김회장의 사원번호가 이경오의 상사번호로 이경오의 상사가 김회장이 된다.
+
+SELECT
+    A.emp_no, A.emp_nm, A.direct_manager_emp_no
+    , B.emp_nm AS 상사정보
+FROM tb_emp A, tb_emp B --하나는 자기자신, 하나는 조인할 대상의 정보라고 생각하기
+WHERE A.direct_manager_emp_no = B.emp_no;
+
+
+
+DELETE FROM tb_dept WHERE dept_cd IN ('100014', '100015');
+
+DELETE FROM tb_emp WHERE emp_no IN ('1000000041', '1000000042', '1000000043', '1000000044', '1000000045');
+
+COMMIT;
+
+ALTER TABLE tb_emp 
+ADD CONSTRAINT fk_tb_emp01 
+FOREIGN KEY (dept_cd) 
+REFERENCES tb_dept (dept_cd);
